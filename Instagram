@@ -1,0 +1,75 @@
+from selenium import webdriver
+import os 
+import time
+
+
+class InstagramBot:
+
+    def __init__(self, username, password):
+
+        """
+        Initializes an instance of the InstagramBot class 
+        Call the login method to authenticate a user with with IG
+
+        Args:
+            username:str: The Instagram username for a user
+            password:str: The Instagram password for a user
+
+        Attributes:
+            driver:selenium.webdriver.Chrome: The Chromedriver that is used to automate browser actions
+
+        """
+        self.username = username
+        self.password = password
+        self.base_url = 'https://www.instagram.com'
+        self.driver = webdriver.Chrome('./chromedriver.exe')
+
+        self.login()
+
+    
+    def login(self):
+        self.driver.get('{}/accounts/login/'.format(self.base_url))
+
+        self.driver.find_element_by_name('username').send_keys(self.username)
+        self.driver.find_element_by_name('password').send_keys(self.password)
+        self.driver.find_elements_by_xpath("//div[contains(text(), 'Log In')]")[0].click()
+
+        time.sleep(3)
+
+    def nav_user(self, user):
+        self.driver.get('{}/{}/'.format(self.base_url, user))
+
+        time.sleep(1)
+        self.driver.find_elements_by_xpath("//a[@href='/mndst.brand/following/']")[0].click()
+        time.sleep(1)
+        """
+        unfollow_btns = self.find_buttons('Following')[0]
+        """
+        unfollow_btns = self.driver.find_elements_by_xpath("//div[contains(text(), 'Following')]")
+        
+        if unfollow_btns:
+            for btn in unfollow_btns:
+                btn.click()
+                unfollow_confirmation = self.find_buttons('Unfollow')[0]
+                unfollow_confirmation.click()
+        else:
+            print('No {} buttons were found.'.format('Following'))
+
+
+    def find_buttons(self, button_text):
+        """
+        Finds buttons for following and unfollowing users by filtering follow elements for buttons. Defaults to finding follow buttons.
+
+        Args:
+            button_text: Text that the desired button(s) has 
+        """
+
+        buttons = self.driver.find_elements_by_xpath("//*[text()='{}']".format(button_text))
+
+        return buttons
+
+
+if __name__ == '__main__':
+    ig_bot = InstagramBot('', '')
+    ig_bot.nav_user('[YOUR USERNAME]/following')
+    
