@@ -1,0 +1,51 @@
+{
+ "logo": null,
+ "heroes": {
+  "home": "https://mideastlaw.de/wp-content/uploads/2020/06/Preload-Image-Home-Video-e1592247535251.png",
+  "expertise": null,
+  "locations": null,
+  "practice": "https://mideastlaw.de/wp-content/uploads/2020/06/Practice_Creative-scaled.jpeg",
+  "team": "https://mideastlaw.de/wp-content/uploads/2020/05/Team-scaled.jpeg"
+ },
+ "portraits": {
+  "abdel-saleh": "https://mideastlaw.de/wp-content/uploads/2020/07/Hola-Saleh.png",
+  "adnane-bouchaib": "https://mideastlaw.de/wp-content/uploads/2023/01/Adnane-Bouchaib.png",
+  "asaad-saad": "https://mideastlaw.de/wp-content/uploads/2020/07/Assad-Saad.jpeg",
+  "christian-steiner": "https://mideastlaw.de/wp-content/uploads/2020/03/Foto-Christian-Steiner.jpg",
+  "christian-ule": "https://mideastlaw.de/wp-content/uploads/2020/03/Foto-Christian-Ule.png",
+  "clara-amico": "https://mideastlaw.de/wp-content/uploads/2025/09/Foto-Clara-Amico.png",
+  "cyrille-naffah": "https://mideastlaw.de/wp-content/uploads/2020/07/Cyrille_Picture.png",
+  "george-amine": "https://mideastlaw.de/wp-content/uploads/2020/07/George-Amine.png",
+  "hatem-darweesh": "https://mideastlaw.de/wp-content/uploads/2021/03/Hatem-Darweesh.jpg",
+  "hazem-abid": "https://mideastlaw.de/wp-content/uploads/2023/10/Hazem-Abid.png",
+  "imad-kassir": "https://mideastlaw.de/wp-content/uploads/2020/07/Imad-Picture.jpg",
+  "islam-elmasry": "https://mideastlaw.de/wp-content/uploads/2020/07/Islam.jpg",
+  "karim-adel": "https://mideastlaw.de/wp-content/uploads/2020/07/Karim.jpg",
+  "leon-patrice-sarr": "https://mideastlaw.de/wp-content/uploads/2025/03/Leon_Patrice.png",
+  "mohamed-oulkhouir": "https://mideastlaw.de/wp-content/uploads/2020/07/Mohamed-Oulkhouir.jpg",
+  "philipp-bremer": "https://mideastlaw.de/wp-content/uploads/2026/01/Foto-Philipp-Bremer.png",
+  "reda-baghdadi": "https://mideastlaw.de/wp-content/uploads/2020/07/Reda.png",
+  "samer-abou-said": "https://mideastlaw.de/wp-content/uploads/2020/07/Samer.jpg",
+  "sarab-k-hassan": "https://mideastlaw.de/wp-content/uploads/2020/07/Sarab-Pic.png",
+  "sophie-greiner": "https://mideastlaw.de/wp-content/uploads/2022/09/Sophie-Greiner.png",
+  "grita-paulina-lobsack": "https://mideastlaw.de/wp-content/uploads/2026/05/Foto-GPL.png",
+  "mariam-amr": "https://mideastlaw.de/wp-content/uploads/2026/02/Foto-Mariam.png",
+  "zeyad-mohiy": "https://mideastlaw.de/wp-content/uploads/2026/02/Foto-Zeyad.png"
+ },
+ "other": [
+  "https://mideastlaw.de/wp-content/uploads/2020/11/MidEast-Law-Icon.png",
+  "https://mideastlaw.de/wp-content/uploads/2020/11/MidEast-Law-Icon-150x150.png",
+  "https://mideastlaw.de/wp-content/uploads/2020/11/MidEast-Law-Icon-100x100.png",
+  "https://mideastlaw.de/wp-content/uploads/2020/06/Practice_Creative-2000x1200.jpeg",
+  "https://mideastlaw.de/wp-content/uploads/2020/05/Team-2000x1200.jpeg",
+  "https://mideastlaw.de/wp-content/uploads/2020/06/Ule-Back.png",
+  "https://mideastlaw.de/wp-content/uploads/2020/06/Steiner-Back.png",
+  "https://mideastlaw.de/wp-content/uploads/2020/07/Send-Email.png",
+  "https://mideastlaw.de/wp-content/themes/MIDEAST%20Law%20Theme%203.0/images/CBBL-570-167.png",
+  "https://mideastlaw.de/wp-content/themes/MIDEAST%20Law%20Theme%203.0/images/ABALogo-e6d.png",
+  "https://mideastlaw.de/wp-content/themes/MIDEAST%20Law%20Theme%203.0/images/GPSA-3e7-56e.png",
+  "https://mideastlaw.de/wp-content/uploads/2020/06/GPSA.png",
+  "https://mideastlaw.de/wp-content/uploads/2021/03/DEF_Legalmondo_Logo-06.png"
+ ],
+ "_logo_unused": "https://mideastlaw.de/wp-content/themes/MIDEAST%20Law%20Theme%203.0/images/logo-96dpi1-cb7-ad1.jpg"
+}

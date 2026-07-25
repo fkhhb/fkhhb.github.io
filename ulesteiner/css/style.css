@@ -352,3 +352,43 @@ a:hover { color: var(--clay); }
   content: "·"; counter-increment: none; position: absolute; left: 2px; top: 6px;
   color: var(--clay); font-size: 1.1rem; font-family: "Inter", sans-serif;
 }
+
+/* ---------- imagery ---------- */
+/* Portrait overlays the initials disc; onerror removes it and initials show. */
+.pcard .init {
+  position: relative;
+  overflow: hidden;
+  width: 76px; height: 76px;
+  font-size: 1.35rem;
+}
+.pcard .init img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+}
+
+.hero { position: relative; overflow: hidden; }
+.phead { position: relative; overflow: hidden; }
+.hero > .wrap, .phead > .wrap { position: relative; z-index: 1; }
+.hero-photo {
+  position: absolute; top: 0; right: 0; bottom: 0;
+  width: 42%;
+  background-size: cover; background-position: center;
+  opacity: 0.9;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 38%);
+  mask-image: linear-gradient(to right, transparent, #000 38%);
+}
+@media (max-width: 900px) { .hero-photo { display: none; } }
+
+.phead-photo {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  opacity: 0.14;
+}
+
+.brand-logo { height: 40px; width: auto; display: block; }
+
+.card-photo, .office-photo {
+  display: block; width: 100%; height: 150px;
+  object-fit: cover; margin: -30px -28px 22px; width: calc(100% + 56px);
+}
