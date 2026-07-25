@@ -6,6 +6,14 @@ const path = require('path');
 
 const OUT = path.join(__dirname, '..');
 
+// Imagery referenced from the firm's own site. Optional: if the manifest is
+// absent the site simply builds without photos.
+let IMG = { logo: null, heroes: {}, portraits: {} };
+try {
+  IMG = Object.assign(IMG, JSON.parse(fs.readFileSync(path.join(__dirname, 'images.json'), 'utf8')));
+} catch (e) { console.warn('no images.json — building without imagery'); }
+const onerr = 'this.remove()';
+
 const NAV = [
   { href: 'index.html', label: 'Home', key: 'home' },
   { href: 'why-us.html', label: 'Why Us', key: 'why' },
@@ -35,7 +43,9 @@ function head(title, desc, depth) {
 <header class="hdr">
   <div class="wrap">
     <a class="logo" href="${p}index.html">
-      <span class="mark">ULE <i>&amp;</i> STEINER</span>
+      ${IMG.logo
+        ? `<img class="brand-logo" src="${IMG.logo}" alt="Ule &amp; Steiner" onerror="this.outerHTML='&lt;span class=\\'mark\\'&gt;ULE &lt;i&gt;&amp;amp;&lt;/i&gt; STEINER&lt;/span&gt;'">`
+        : `<span class="mark">ULE <i>&amp;</i> STEINER</span>`}
       <span class="sub">Legal · Tax · BPO — EMEA</span>
     </a>
     <button class="burger" aria-label="Toggle navigation">Menu</button>
@@ -224,7 +234,45 @@ const OFFICES = [
 
 /* ============================ PAGES ============================ */
 
+const SLUG = {
+  'Dr. Christian Ule': 'dr-christian-ule',
+  'Dr. Christian Steiner': 'dr-christian-steiner',
+  'Philipp Bremer': 'philipp-bremer',
+  'Sophie Greiner': 'sophie-greiner',
+  'Clara Amico': 'clara-amico',
+  'Karim Adel Kamel Ghobrial, LL.M.': 'karim-adel-kamel-ghobrial-ll-m',
+  'Hatem Darweesh': 'hatem-darweesh',
+  'Dr. Asaad Saad': 'dr-asaad-saad',
+  'Hoda Abdel Saleh': 'hoda-abdel-saleh',
+  'George Amine': 'george-amine',
+  'Islam Elmasry': 'islam-elmasry',
+  'Mariam Amr': 'mariam-amr',
+  'Zeyad Mohiy': 'zeyad-mohiy',
+  'Cyrille Naffah': 'cyrille-naffah',
+  'Imad Kassir': 'imad-kassir',
+  'Samer Abou Said': 'samer-abou-said',
+  'Sarab K. Hassan': 'sarab-k-hassan',
+  'Mohamed Oulkhouir': 'mohamed-oulkhouir',
+  'Réda Baghdadi': 'reda-baghdadi',
+  'Adnane Bouchaib': 'adnane-bouchaib',
+  'Hazem Abid': 'hazem-abid',
+  'Léon Patrice Sarr': 'leon-patrice-sarr',
+  'Grita Paulina Lobsack': 'grita-paulina-lobsack',
+};
+
+function portraitFor(name) {
+  const slug = SLUG[name];
+  return (slug && IMG.portraits && IMG.portraits[slug]) || null;
+}
+
+// Background photo for the top of a page; empty string when none is available.
+function heroPhoto(key, cls) {
+  const src = IMG.heroes && IMG.heroes[key];
+  return src ? '\n  <div class="' + cls + '" style="background-image:url(\'' + src + '\')"></div>' : '';
+}
+
 function initials(name) {
+
   const clean = name.replace(/^(Dr\.|Prof\.)\s+/, '').replace(/,.*$/, '');
   const parts = clean.split(/\s+/).filter(Boolean);
   return ((parts[0] || '')[0] + (parts[parts.length - 1] || '')[0]).toUpperCase();
@@ -233,7 +281,7 @@ function initials(name) {
 function buildHome(countries) {
   const topCountries = countries.slice(0, 8);
   const body = `
-<section class="hero">
+<section class="hero">${heroPhoto('home', 'hero-photo')}
   <div class="wrap">
     <div class="grid">
       <div>
@@ -326,7 +374,7 @@ ${ADVISE.map(a => `      <li>${a}</li>`).join('\n')}
 
 function buildWhy() {
   const body = `
-<section class="phead">
+<section class="phead">${heroPhoto('why-us', 'phead-photo')}
   <div class="wrap">
     <div class="crumb"><a href="index.html">Home</a> / Why Us</div>
     <span class="eyebrow">Why Ule &amp; Steiner</span>
@@ -385,7 +433,7 @@ function buildWhy() {
 
 function buildPractice() {
   const body = `
-<section class="phead">
+<section class="phead">${heroPhoto('practice', 'phead-photo')}
   <div class="wrap">
     <div class="crumb"><a href="index.html">Home</a> / Practice Areas</div>
     <span class="eyebrow">Practice areas</span>
@@ -410,7 +458,7 @@ ${PRACTICE.map((p, i) => `      <div class="acc-item${i === 0 ? ' open' : ''}">
 
 function buildClients() {
   const body = `
-<section class="phead">
+<section class="phead">${heroPhoto('clients', 'phead-photo')}
   <div class="wrap">
     <div class="crumb"><a href="index.html">Home</a> / Clients &amp; Industries</div>
     <span class="eyebrow">Clients &amp; industries</span>
@@ -448,7 +496,7 @@ ${ADVISE.map(a => `      <li>${a}</li>`).join('\n')}
 
 function buildTeam() {
   const body = `
-<section class="phead">
+<section class="phead">${heroPhoto('team', 'phead-photo')}
   <div class="wrap">
     <div class="crumb"><a href="index.html">Home</a> / Team</div>
     <span class="eyebrow">The team</span>
@@ -467,7 +515,7 @@ function buildTeam() {
     </div>
     <div class="people">
 ${TEAM.map(p => `      <div class="pcard${p.lead ? ' lead' : ''}" data-region="${p.r}">
-        <div class="init">${initials(p.n)}</div>
+        <div class="init">${initials(p.n)}${portraitFor(p.n) ? `<img src="${portraitFor(p.n)}" alt="${p.n.replace(/&amp;/g,'&')}" loading="lazy" onerror="${onerr}">` : ''}</div>
         <h3>${p.n}</h3>
         <span class="title">${p.t}</span>
         <div class="loc">${p.loc}</div>
@@ -500,7 +548,7 @@ function buildContact() {
       </div>`).join('\n');
 
   const body = `
-<section class="phead">
+<section class="phead">${heroPhoto('contact', 'phead-photo')}
   <div class="wrap">
     <div class="crumb"><a href="index.html">Home</a> / Contact</div>
     <span class="eyebrow">Offices &amp; contact</span>
@@ -550,7 +598,7 @@ ${render(group('Operating Presence'))}
 
 function buildRegionalIndex(countries) {
   const body = `
-<section class="phead">
+<section class="phead">${heroPhoto('regional', 'phead-photo')}
   <div class="wrap">
     <div class="crumb"><a href="index.html">Home</a> / Regional Experience</div>
     <span class="eyebrow">Regional experience</span>

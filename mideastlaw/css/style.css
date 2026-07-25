@@ -417,3 +417,42 @@ footer.site-footer .fine-print a { display: inline; color: #9aa8bd; }
 .breadcrumb { font-size: 0.78rem; color: #93a0b6; margin-bottom: 6px; }
 .breadcrumb a { color: #93a0b6; }
 .breadcrumb a:hover { color: var(--gold-light); }
+
+/* ---------- imagery ---------- */
+/* Portrait sits over the initials circle; if the remote image fails to load
+   its onerror handler removes it and the initials show through. */
+.person .avatar {
+  position: relative;
+  overflow: hidden;
+  width: 84px; height: 84px;
+  font-size: 1.5rem;
+}
+.person .avatar img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+}
+
+.hero-photo {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  opacity: 0.34;
+}
+/* scrim keeps headline text legible over the photo */
+.hero-photo::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(100deg, rgba(6,20,40,0.86) 0%, rgba(6,20,40,0.45) 55%, rgba(6,20,40,0.15) 100%);
+}
+.hero, .page-header { position: relative; overflow: hidden; }
+.hero > .container, .page-header > .container { position: relative; z-index: 1; }
+
+.brand-logo { height: 42px; width: auto; display: block; }
+
+.office-card .office-photo,
+.news-item .news-photo {
+  display: block; width: 100%; height: 160px;
+  object-fit: cover; margin-bottom: 16px;
+}
+.news-item { grid-template-columns: 200px 1fr; }
+.news-item .news-photo { height: 130px; margin-bottom: 10px; }
+@media (max-width: 620px) { .news-item { grid-template-columns: 1fr; } }
