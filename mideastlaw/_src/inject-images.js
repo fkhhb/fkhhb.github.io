@@ -63,6 +63,7 @@ function addHero(html, file) {
   const key = HERO_FOR[file];
   const src = key && img.heroes ? img.heroes[key] : null;
   if (!src) return html;
+  if (html.includes('class="hero-photo"')) return html;  // already injected
   // preload so a 404 never paints a broken banner
   const div = `<div class="hero-photo" style="background-image:url('${src}')"></div>`;
   let done = false;
